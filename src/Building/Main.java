@@ -5,22 +5,40 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Wall wall = new Wall("Несущая", 20, 10, 100);
-        String text = "стена готова";
+        List<Brick> brickList = new ArrayList<>();
+
+        Brick brick20 = new Brick(20, 20);
+        Brick brick30 = new Brick(30, 30);
+        Brick brick40 = new Brick(40, 40);
+
+        brickList.add(brick20);
+        brickList.add(brick30);
+        brickList.add(brick40);
+
+        Wall wall = new Wall(brickList, 90, 1);
+        Builder builder = new Builder();
+        List<Wall> list = new ArrayList<>();
+        list.add(wall);
+        builder.setWallList(list);
+
+        List<CompetentAuthority> competentAuthorityList = new ArrayList<>();
+
+        InspectionCheckSize inspectionCheckSize = new InspectionCheckSize("Дима", Type.COUNTER_SIZE);
+        InspectorChecksTheSound inspectorChecksTheSound = new InspectorChecksTheSound("Вова", Type.CHECKS_SOUND_INSULATION);
+        InspectorChecksWarmth inspectorChecksWarmth = new InspectorChecksWarmth("Рома", Type.CHECKS_THERMAL_CONDUCTIVITY);
+
+        competentAuthorityList.add(inspectionCheckSize);
+        competentAuthorityList.add(inspectorChecksWarmth);
+        competentAuthorityList.add(inspectorChecksTheSound);
+
         WallReadyNotifier wallReadyNotifier = new WallReadyNotifier();
+        wallReadyNotifier.setInspectionBody(competentAuthorityList);
 
-        InspectionBodies inspectionBodies1 = new InspectionBodies("Дмитрий", Type.CHECKS_SOUND_INSULATION);
-        InspectionBodies inspectionBodies2 = new InspectionBodies("Иван", Type.COUNTER_SIZE);
-        InspectionBodies inspectionBodies3 = new InspectionBodies("Александр", Type.CHECKS_THERMAL_CONDUCTIVITY);
+        wallReadyNotifier.notifyTheCompetentAuthority(wall);
 
-        List<InspectionBodies> list = new ArrayList<>();
-        list.add(inspectionBodies1);
-        list.add(inspectionBodies2);
-        list.add(inspectionBodies3);
+        System.out.println(inspectionCheckSize.wallMatching());
+        System.out.println(inspectorChecksTheSound.wallMatching());
+        System.out.println(inspectorChecksWarmth.wallMatching());
 
-        wallReadyNotifier.setInspectionBody(list);
-        wallReadyNotifier.notifyTheCompetentAuthority(text,wall);
-
-        System.out.println(inspectionBodies1.getName()+" получил уведомление "+inspectionBodies1.getNotification().getText()+wall);
     }
 }

@@ -4,13 +4,8 @@ public class Notification {//уведомление
     String text;
     Wall wall;
 
-    public Notification(String text, Wall wall) {
-        this.text = text;
+    public Notification( Wall wall) {
         this.wall = wall;
-    }
-
-    public String getText() {
-        return text;
     }
 
     public Wall getWall() {

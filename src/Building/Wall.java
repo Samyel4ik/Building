@@ -1,20 +1,27 @@
 package Building;
 
-public class Wall {
-    String wallType;
-    int numberOfBricks;
-    int sizeWall;
-    int brickWeight;
+import java.util.List;
 
-    public Wall(String wallType, int numberOfBricks, int sizeWall, int brickWeight) {
-        this.wallType = wallType;
-        this.numberOfBricks = numberOfBricks;
+public class Wall {
+    List<Brick> list;
+    int sizeWall;
+    int amountOfSolution;
+
+    public Wall(List<Brick> list, int sizeWall, int amountOfSolution) {
+        this.list = list;
         this.sizeWall = sizeWall;
-        this.brickWeight = brickWeight;
+        this.amountOfSolution = amountOfSolution;
     }
 
-    @Override
-    public String toString() {
-        return "! Характеристика стены - " + this.wallType + "," + "количество кирпичей - " + this.numberOfBricks + "," + "размер стены - " + this.sizeWall + " м2"+" ," + "вес кирпича - " + this.brickWeight + "грамм.";
+    public List<Brick> getList() {
+        return list;
+    }
+
+    public int getSizeWall() {
+        return sizeWall;
+    }
+
+    public int getAmountOfSolution() {
+        return amountOfSolution;
     }
 }
