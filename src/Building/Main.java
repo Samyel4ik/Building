@@ -13,7 +13,6 @@ public class Main {
         Builder builder = new Builder();
 
         builder.buildAWall(brickList, 6, 3);
-        builder.accounting();
 
         builder.addInspectionBodies(new InspectorChecksTheSound("Dima", Type.CHECKS_SOUND_INSULATION));
         builder.addInspectionBodies(new InspectorChecksWarmth("Tom", Type.CHECKS_THERMAL_CONDUCTIVITY));

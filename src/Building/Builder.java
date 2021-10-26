@@ -9,9 +9,6 @@ public class Builder implements Notifier {
 
     public void buildAWall(List<Brick> list, int sizeWall, int amountOfSolution) {
         this.wall = new Wall(list, sizeWall, amountOfSolution);
-    }
-
-    public void accounting() {
         this.wallList.add(this.wall);
     }
 
