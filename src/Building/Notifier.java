@@ -1,6 +1,6 @@
 package Building;
 
-public interface Notifier{ //уведомитель
-    void notifyTheCompetentAuthority(Wall wall);
+public interface Notifier { //уведомитель
+    void notifyTheCompetentAuthority(String text);
 
 }
