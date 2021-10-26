@@ -1,7 +1,7 @@
 package Building;
 
 interface CompetentAuthority {
-    void acceptNotification(Notification notification);
+    void acceptNotification(Wall wall);
 
     boolean wallMatching();
 }

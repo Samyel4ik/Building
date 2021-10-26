@@ -5,21 +5,25 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        List<Brick> brickList = new ArrayList<>();
-        brickList.add(new Brick(10, 100));
-        brickList.add(new Brick(12, 120));
-        brickList.add(new Brick(15, 150));
-
         Builder builder = new Builder();
 
+        List<Wall> wallList = new ArrayList<>();
+        builder.setWallList(wallList);
+
+        List<CompetentAuthority> competentAuthorityList = new ArrayList<>();
+        competentAuthorityList.add(new InspectorChecksTheSound("Dima"));
+        competentAuthorityList.add(new InspectorChecksWarmth("Tom"));
+        competentAuthorityList.add(new InspectionCheckSize("Tim"));
+
+        builder.setInspectionBody(competentAuthorityList);
+
+
+        List<Brick> brickList = new ArrayList<>();
+        brickList.add(new Brick(10, 100));
+        brickList.add(new Brick(10, 100));
+        brickList.add(new Brick(10, 100));
+
         builder.buildAWall(brickList, 6, 3);
-
-        builder.addInspectionBodies(new InspectorChecksTheSound("Dima", Type.CHECKS_SOUND_INSULATION));
-        builder.addInspectionBodies(new InspectorChecksWarmth("Tom", Type.CHECKS_THERMAL_CONDUCTIVITY));
-        builder.addInspectionBodies(new InspectionCheckSize("Tim", Type.COUNTER_SIZE));
-
-        builder.notifyTheCompetentAuthority("Стена готова");
-
 
     }
 }

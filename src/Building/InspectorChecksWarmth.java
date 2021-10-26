@@ -2,38 +2,31 @@ package Building;
 
 public class InspectorChecksWarmth implements CompetentAuthority {
     String name;
-    Notification notification;
-    Type type;
+    Wall wall;
+    Type type = Type.CHECKS_THERMAL_CONDUCTIVITY;
 
-    public InspectorChecksWarmth(String name, Type type) {
+    public InspectorChecksWarmth(String name) {
         this.name = name;
-        this.type = type;
     }
 
     @Override
-    public void acceptNotification(Notification notification) {
-        this.notification = notification;
+    public void acceptNotification(Wall wall) {
+        this.wall = wall;
     }
+
 
     @Override
     public boolean wallMatching() {
-        Wall wall = this.notification.getWall();
+
         int builtWallSize = 0;
-        for (int i = 0; i < wall.getList().size(); i++) {
-            builtWallSize = builtWallSize + wall.getList().get(i).getSize();
+        for (int i = 0; i < this.wall.getList().size(); i++) {
+            builtWallSize = builtWallSize + this.wall.getList().get(i).getSize();
         }
-        return (builtWallSize / wall.getAmountOfSolution() > 2);
+        return (builtWallSize / this.wall.getAmountOfSolution() > 2);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public Notification getNotification() {
-        return notification;
-    }
-
-    public Type getType() {
-        return type;
+    @Override
+    public String toString() {
+        return this.name + " провел проверку над стеной " + this.wall + " заключение " + wallMatching();
     }
 }

@@ -3,13 +3,31 @@ package Building;
 import java.util.List;
 
 public class Builder implements Notifier {
-    Wall wall;
     List<Wall> wallList;
     List<CompetentAuthority> inspectionBody;
 
+    public void setWallList(List<Wall> wallList) {
+        this.wallList = wallList;
+    }
+
+    public void setInspectionBody(List<CompetentAuthority> inspectionBody) {
+        this.inspectionBody = inspectionBody;
+    }
+
     public void buildAWall(List<Brick> list, int sizeWall, int amountOfSolution) {
-        this.wall = new Wall(list, sizeWall, amountOfSolution);
-        this.wallList.add(this.wall);
+        Wall wall = new Wall(list, sizeWall, amountOfSolution);
+        this.wallList.add(wall);
+
+        notifyTheCompetentAuthority(wall);
+    }
+
+
+    @Override
+    public void notifyTheCompetentAuthority(Wall wall) {
+
+        for (int i = 0; i < this.inspectionBody.size(); i++) {
+            this.inspectionBody.get(i).acceptNotification(wall);
+        }
     }
 
 
@@ -17,12 +35,12 @@ public class Builder implements Notifier {
         this.inspectionBody.add(inspectionBodies);
     }
 
-    @Override
-    public void notifyTheCompetentAuthority(String text) {
-        Notification notification = new Notification(text, this.wall);
 
-        for (int i = 0; i < this.inspectionBody.size(); i++) {
-            this.inspectionBody.get(i).acceptNotification(notification);
-        }
+    public List<Wall> getWallList() {
+        return wallList;
+    }
+
+    public List<CompetentAuthority> getInspectionBody() {
+        return inspectionBody;
     }
 }

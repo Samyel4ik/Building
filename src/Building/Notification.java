@@ -1,16 +1,12 @@
 package Building;
 
 public class Notification {//уведомление
-    String text;
+
     Wall wall;
 
-    public Notification(String text, Wall wall) {
-        this.text = text;
-        this.wall = wall;
-    }
+    public Notification(Wall wall) {
 
-    public String getText() {
-        return text;
+        this.wall = wall;
     }
 
     public Wall getWall() {
