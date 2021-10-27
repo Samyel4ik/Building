@@ -7,13 +7,6 @@ public class Builder implements Notifier {
     List<Wall> wallList;
     Map<Type, CompetentAuthority> inspectionBody;
 
-    public void setWallList(List<Wall> wallList) {
-        this.wallList = wallList;
-    }
-
-    public void setInspectionBody(Map<Type, CompetentAuthority> inspectionBody) {
-        this.inspectionBody = inspectionBody;
-    }
 
     public void buildAWall(List<Brick> list, int sizeWall, int amountOfSolution, Character character) {
         Wall wall = new Wall(list, sizeWall, amountOfSolution, character);
@@ -21,7 +14,6 @@ public class Builder implements Notifier {
 
         notifyTheCompetentAuthority(wall);
     }
-
 
     @Override
     public void notifyTheCompetentAuthority(Wall wall) {
@@ -36,7 +28,8 @@ public class Builder implements Notifier {
         }
     }
 
-    public void addInspectionBodies(Type type, CompetentAuthority inspectionBodies) {
+    public void addInspectionBodies(CompetentAuthority inspectionBodies) {
+        Type type = inspectionBodies.getType();
         this.inspectionBody.put(type, inspectionBodies);
     }
 

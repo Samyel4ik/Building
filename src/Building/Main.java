@@ -27,6 +27,6 @@ public class Main {
 
         builder.buildAWall(brickList, 6, 3,Character.BEARING);
 
-       
+
     }
 }
