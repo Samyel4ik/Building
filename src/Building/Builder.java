@@ -1,5 +1,7 @@
 package Building;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +12,7 @@ public class Builder implements Notifier {
 
     public void buildAWall(List<Brick> list, int sizeWall, int amountOfSolution, Character character) {
         Wall wall = new Wall(list, sizeWall, amountOfSolution, character);
+        this.wallList = new ArrayList<>();
         this.wallList.add(wall);
 
         notifyTheCompetentAuthority(wall);
@@ -17,6 +20,7 @@ public class Builder implements Notifier {
 
     @Override
     public void notifyTheCompetentAuthority(Wall wall) {
+
         if (wall.getCharacter().equals(Character.BEARING)) {
             this.inspectionBody.get(Type.COUNTER_SIZE).acceptNotification(wall);
         }
@@ -29,6 +33,7 @@ public class Builder implements Notifier {
     }
 
     public void addInspectionBodies(CompetentAuthority inspectionBodies) {
+        this.inspectionBody = new HashMap<>();
         Type type = inspectionBodies.getType();
         this.inspectionBody.put(type, inspectionBodies);
     }
