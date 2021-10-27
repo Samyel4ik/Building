@@ -23,7 +23,10 @@ public class Main {
         brickList.add(new Brick(10, 100));
         brickList.add(new Brick(10, 100));
 
-        builder.buildAWall(brickList, 6, 3);
+        builder.buildAWall(brickList, 6, 3,Character.BEARING);
 
+        System.out.println(competentAuthorityList.get(0).getWall());
+        System.out.println(competentAuthorityList.get(1).getWall());
+        System.out.println(competentAuthorityList.get(2).getWall());
     }
 }

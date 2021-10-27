@@ -16,4 +16,12 @@ public class Brick {
     public int getSize() {
         return size;
     }
+
+    @Override
+    public String toString() {
+        return "Brick{" +
+                "weight=" + weight +
+                ", size=" + size +
+                '}';
+    }
 }

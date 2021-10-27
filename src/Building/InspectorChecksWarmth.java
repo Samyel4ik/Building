@@ -26,6 +26,15 @@ public class InspectorChecksWarmth implements CompetentAuthority {
     }
 
     @Override
+    public Wall getWall() {
+        return wall;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    @Override
     public String toString() {
         return this.name + " провел проверку над стеной " + this.wall + " заключение " + wallMatching();
     }
