@@ -1,7 +1,9 @@
 package Building;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
@@ -9,11 +11,11 @@ public class Main {
 
         List<Wall> wallList = new ArrayList<>();
         builder.setWallList(wallList);
+        Map<Type,CompetentAuthority>competentAuthorityList = new HashMap<>();
 
-        List<CompetentAuthority> competentAuthorityList = new ArrayList<>();
-        competentAuthorityList.add(new InspectorChecksTheSound("Dima"));
-        competentAuthorityList.add(new InspectorChecksWarmth("Tom"));
-        competentAuthorityList.add(new InspectionCheckSize("Tim"));
+        competentAuthorityList.put(Type.CHECKS_SOUND_INSULATION,new InspectorChecksTheSound("Dima"));
+        competentAuthorityList.put(Type.CHECKS_THERMAL_CONDUCTIVITY,new InspectorChecksWarmth("Tom"));
+        competentAuthorityList.put(Type.COUNTER_SIZE,new InspectionCheckSize("Tim"));
 
         builder.setInspectionBody(competentAuthorityList);
 

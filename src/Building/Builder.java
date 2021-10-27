@@ -1,16 +1,17 @@
 package Building;
 
 import java.util.List;
+import java.util.Map;
 
 public class Builder implements Notifier {
     List<Wall> wallList;
-    List<CompetentAuthority> inspectionBody;
+    Map<Type, CompetentAuthority> inspectionBody;
 
     public void setWallList(List<Wall> wallList) {
         this.wallList = wallList;
     }
 
-    public void setInspectionBody(List<CompetentAuthority> inspectionBody) {
+    public void setInspectionBody(Map<Type, CompetentAuthority> inspectionBody) {
         this.inspectionBody = inspectionBody;
     }
 
@@ -24,29 +25,19 @@ public class Builder implements Notifier {
 
     @Override
     public void notifyTheCompetentAuthority(Wall wall) {
-
-        for (int i = 0; i < this.inspectionBody.size(); i++) {
-
-            if (wall.getCharacter().equals(Character.BEARING)) {
-                if (this.inspectionBody.get(i).getType().equals(Type.COUNTER_SIZE)) {
-                    this.inspectionBody.get(i).acceptNotification(wall);
-                }
-            }
-            if (wall.getCharacter().equals(Character.PARTITION)) {
-                if (this.inspectionBody.get(i).getType().equals(Type.CHECKS_SOUND_INSULATION)) {
-                    this.inspectionBody.get(i).acceptNotification(wall);
-                }
-            }
-            if (wall.getCharacter().equals(Character.EXTERNAL)) {
-                if (this.inspectionBody.get(i).getType().equals(Type.CHECKS_THERMAL_CONDUCTIVITY)) {
-                    this.inspectionBody.get(i).acceptNotification(wall);
-                }
-            }
+        if (wall.getCharacter().equals(Character.BEARING)) {
+            this.inspectionBody.get(Type.COUNTER_SIZE).acceptNotification(wall);
+        }
+        if (wall.getCharacter().equals(Character.PARTITION)) {
+            this.inspectionBody.get(Type.CHECKS_SOUND_INSULATION).acceptNotification(wall);
+        }
+        if (wall.getCharacter().equals(Character.EXTERNAL)) {
+            this.inspectionBody.get(Type.CHECKS_THERMAL_CONDUCTIVITY).acceptNotification(wall);
         }
     }
 
-    public void addInspectionBodies(CompetentAuthority inspectionBodies) {
-        this.inspectionBody.add(inspectionBodies);
+    public void addInspectionBodies(Type type, CompetentAuthority inspectionBodies) {
+        this.inspectionBody.put(type, inspectionBodies);
     }
 
 
@@ -54,7 +45,7 @@ public class Builder implements Notifier {
         return wallList;
     }
 
-    public List<CompetentAuthority> getInspectionBody() {
+    public Map<Type, CompetentAuthority> getInspectionBody() {
         return inspectionBody;
     }
 }
