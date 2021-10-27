@@ -27,8 +27,6 @@ public class Main {
 
         builder.buildAWall(brickList, 6, 3,Character.BEARING);
 
-        System.out.println(competentAuthorityList.get(0).getWall());
-        System.out.println(competentAuthorityList.get(1).getWall());
-        System.out.println(competentAuthorityList.get(2).getWall());
+       
     }
 }
