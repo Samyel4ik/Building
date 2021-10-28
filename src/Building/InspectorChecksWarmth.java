@@ -1,5 +1,8 @@
 package Building;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class InspectorChecksWarmth implements CompetentAuthority {
     String name;
     Wall wall;

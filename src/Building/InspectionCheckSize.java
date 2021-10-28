@@ -1,9 +1,13 @@
 package Building;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class InspectionCheckSize implements CompetentAuthority { //орган1
     String name;
     Wall wall;
     Type type = Type.COUNTER_SIZE;
+
 
     public InspectionCheckSize(String name) {
         this.name = name;
@@ -30,6 +34,7 @@ public class InspectionCheckSize implements CompetentAuthority { //орган1
     public Type getType() {
         return type;
     }
+
 
     @Override
     public String toString() {

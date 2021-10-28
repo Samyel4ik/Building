@@ -1,31 +1,38 @@
 package Building;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class Builder implements Notifier {
-    Map<Character, Wall> wallList = new HashMap<>();
+    List<Wall> wallList = new ArrayList<>();
     Map<Type, CompetentAuthority> inspectionBody = new HashMap<>();
 
+    Map<Character, Type> characterTypeMap = new HashMap<>();
 
-    public void buildAWall(List<Brick> list, int sizeWall, int amountOfSolution, Character character) {
-        Wall wall = new Wall(list, sizeWall, amountOfSolution);
-        this.wallList.put(character, wall);
-
-        notifyTheCompetentAuthority(wall);
+    {
+        characterTypeMap.put(Character.BEARING, Type.COUNTER_SIZE);
+        characterTypeMap.put(Character.PARTITION, Type.CHECKS_SOUND_INSULATION);
+        characterTypeMap.put(Character.EXTERNAL, Type.CHECKS_THERMAL_CONDUCTIVITY);
     }
+
 
     @Override
     public void notifyTheCompetentAuthority(Wall wall) {
-
-        for (int i = 0; i < this.wallList.size(); i++) {
-            this.inspectionBody.get(Type.COUNTER_SIZE).acceptNotification(this.wallList.get(Character.BEARING));
-            this.inspectionBody.get(Type.CHECKS_SOUND_INSULATION).acceptNotification(this.wallList.get(Character.PARTITION));
-            this.inspectionBody.get(Type.CHECKS_THERMAL_CONDUCTIVITY).acceptNotification(this.wallList.get(Character.EXTERNAL));
-
+        Character character = wall.getCharacter();
+        if (characterTypeMap.containsKey(character)) {
+            inspectionBody.get(characterTypeMap.get(character)).acceptNotification(wall);
         }
+
+    }
+
+    public void buildAWall(List<Brick> list, int sizeWall, int amountOfSolution, Character character) {
+        Wall wall = new Wall(list, sizeWall, amountOfSolution, character);
+        this.wallList.add(wall);
+
+        notifyTheCompetentAuthority(wall);
     }
 
     public void addInspectionBodies(CompetentAuthority inspectionBodies) {
@@ -34,7 +41,7 @@ public class Builder implements Notifier {
     }
 
 
-    public Map<Character, Wall> getWallList() {
+    public List<Wall> getWallList() {
         return wallList;
     }
 

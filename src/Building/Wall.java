@@ -6,13 +6,14 @@ public class Wall {
     List<Brick> list;
     int sizeWall;
     int amountOfSolution;
+    Character character;
 
 
-    public Wall(List<Brick> list, int sizeWall, int amountOfSolution) {
+    public Wall(List<Brick> list, int sizeWall, int amountOfSolution, Character character) {
         this.list = list;
         this.sizeWall = sizeWall;
         this.amountOfSolution = amountOfSolution;
-
+        this.character = character;
     }
 
     public List<Brick> getList() {
@@ -27,6 +28,9 @@ public class Wall {
         return amountOfSolution;
     }
 
+    public Character getCharacter() {
+        return character;
+    }
 
     @Override
     public String toString() {
@@ -34,6 +38,7 @@ public class Wall {
                 "list=" + list +
                 ", sizeWall=" + sizeWall +
                 ", amountOfSolution=" + amountOfSolution +
+                ", character=" + character +
                 '}';
     }
 }
